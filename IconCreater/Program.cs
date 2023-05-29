@@ -30,8 +30,19 @@ namespace IconCreater
             App app = new App();
             int[] sizesImageInIconDefault;
            
-            if (args.Length is not 1 || args.Length is 0) sizesImageInIconDefault = app._sizesImageInIcon["1024"];
-            else sizesImageInIconDefault = app._sizesImageInIcon[args[0]];
+            if (args.Length is not 1 || args.Length is 0) sizesImageInIconDefault = app._sizesImageInIcon[_args1024];
+            else 
+            {
+                sizesImageInIconDefault = args[0] switch
+                {
+                    _args2048 => app._sizesImageInIcon[_args2048],
+                    _args1024 => app._sizesImageInIcon[_args1024],
+                    _args512 => app._sizesImageInIcon[_args512],
+                    _args256 => app._sizesImageInIcon[_args256],
+                    _args128 => app._sizesImageInIcon[_args128],
+                    _ => app._sizesImageInIcon[_args1024],
+                };
+            }
             
             IconCreater iconCreater = new IconCreater(sizesImageInIconDefault);
             iconCreater.SaveNewIcon();
